@@ -3,7 +3,7 @@
   "short_name": "Cathode",
   "description": "Cathode fetches the current price of the CryptoCurrency you're talking about in Messenger",
   "author": "Miguel Stevens",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "options_page": "options.html",
   "background": {
     "scripts": ["background.bundle.js"]
