@@ -1,0 +1,35 @@
+{
+  "name": "Cathode",
+  "short_name": "Cathode",
+  "description": "Cathode fetches the current price of the CryptoCurrency you're talking about in Messenger",
+  "author": "Miguel Stevens",
+  "version": "0.2.1",
+  "options_page": "options.html",
+  "background": {
+    "scripts": ["background.bundle.js"]
+  },
+  "permissions": [
+    "background",
+    "tabs",
+    "storage"
+  ],
+  "browser_action": {
+    "default_icon": "icon-128.png"
+  },
+  "icons": {
+    "96": "icon-128.png"
+  },
+  "manifest_version": 2,
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.messenger.com/*"
+      ],
+      "run_at": "document_idle",
+      "js": [
+        "content.bundle.js"
+      ]
+    }
+  ]
+}
