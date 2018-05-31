@@ -59,18 +59,18 @@ document.addEventListener("keydown", function onEvent(event) {
                     .then((response) => response.json())
                     .then((data) => {
 
-                        const currentValue = document.querySelectorAll('[data-text]')[0].innerHTML;
+                        if(data[coin]) {
 
-                        // Compare the values and don't paste if there's a difference (eg user submitted);
-                        if (beforeValue === currentValue.trim()) {
-                            insertText(' 💬' + data[coin]['USD'] + '$');
+                            const currentValue = document.querySelectorAll('[data-text]')[0].innerHTML;
+                            // Compare the values and don't paste if there's a difference (eg user submitted);
+                            if (beforeValue === currentValue.trim()) {
+                                insertText(' 💬' + data[coin]['USD'] + '$');
+                            }
+                            reset();
                         }
-
-                        string = '';
-                        isLoading = false;
-                        listening = false;
                         return true;
-                    });
+                    })
+                    .error(() => {reset()});
             }, 10);
         }
     }
@@ -79,4 +79,10 @@ document.addEventListener("keydown", function onEvent(event) {
 function insertText(resp) {
     const el = document.activeElement;
     insertTextAtCursor(el, ' ' + resp);
+}
+
+function reset() {
+    string = '';
+    isLoading = false;
+    listening = false;
 }
