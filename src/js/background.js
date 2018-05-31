@@ -1,1 +1,3 @@
-// todo change icon when getting data from the api.
+import '../img/icon-128.png';
+
+// todo update icon when fetch data
