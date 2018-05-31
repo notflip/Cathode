@@ -1,1 +1,1 @@
-export default ["BTC", "ETH", "XRP", "BCH", "EOS", "LTC", "ADA", "XLM", "MIOTA", "TRX", "NEO", "USDT", "XMR", "DASH", "XEM"];
+export default ["BTC", "ETH", "XRP", "BCH", "EOS", "LTC", "ADA", "XLM", "MIOTA", "TRX", "NEO", "USDT", "XMR", "DASH", "XEM", "VEN", "ETC", "BNB", "BCN", "QTUM"];
