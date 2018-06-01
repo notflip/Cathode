@@ -2,7 +2,7 @@ import insertTextAtCursor from 'insert-text-at-cursor';
 import coins from './coins';
 
 const exceptions = {
-  "IOTA": "IOT"
+    "IOTA": "IOT"
 };
 
 let listening = false;
@@ -49,6 +49,7 @@ document.addEventListener("keydown", function onEvent(event) {
         if (event.key !== "Enter" && coins.includes(string.toUpperCase())) {
 
             isLoading = true;
+            showLoading();
 
             let coin = handleCoinNames(string.toUpperCase());
             const url = 'https://min-api.cryptocompare.com/data/pricemulti?fsyms=' + coin + '&tsyms=USD';
@@ -57,15 +58,17 @@ document.addEventListener("keydown", function onEvent(event) {
             setTimeout(() => {
 
                 // Get the current value before the fetch.
-                const beforeValue = document.querySelectorAll('[data-text]')[0].innerHTML;
+                const beforeValue = document.querySelectorAll('.public-DraftEditor-content')[0].innerHTML;
 
                 fetch(url)
                     .then((response) => response.json())
                     .then((data) => {
 
-                        if(data[coin]) {
+                        hideLoading();
 
-                            const currentValue = document.querySelectorAll('[data-text]')[0].innerHTML;
+                        if (data[coin]) {
+
+                            const currentValue = document.querySelectorAll('.public-DraftEditor-content')[0].innerHTML;
                             // Compare the values and don't paste if there's a difference (eg user submitted);
                             if (beforeValue === currentValue.trim()) {
                                 insertText(' 💬' + data[coin]['USD'] + '$');
@@ -81,10 +84,28 @@ document.addEventListener("keydown", function onEvent(event) {
 });
 
 function handleCoinNames(coin) {
-    if(exceptions.hasOwnProperty(coin)) {
+    if (exceptions.hasOwnProperty(coin)) {
         return exceptions[coin];
     }
     return coin;
+}
+
+function showLoading() {
+
+    if (!document.getElementById("ext-loading-div")) {
+        const el = document.activeElement;
+        const newEl = document.createElement("div");
+        newEl.style.backgroundColor = '#ff4444';
+        newEl.style.padding = '10px';
+        newEl.style.color = '#fff';
+        newEl.innerHTML = "Loading...";
+        newEl.id = "ext-loading-div";
+        el.parentNode.insertBefore(newEl, el.nextSibling);
+    }
+}
+
+function hideLoading() {
+    document.getElementById("ext-loading-div").outerHTML = "";
 }
 
 function insertText(resp) {

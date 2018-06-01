@@ -24,7 +24,7 @@
   "content_scripts": [
     {
       "matches": [
-        "https://*.messenger.com/*"
+        "https://*.reddit.com/*"
       ],
       "run_at": "document_idle",
       "js": [
