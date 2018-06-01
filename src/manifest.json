@@ -1,7 +1,7 @@
 {
   "name": "Cathode",
   "short_name": "Cathode",
-  "description": "Cathode fetches the current price of the CryptoCurrency you're talking about in Messenger",
+  "description": "Cathode fetches the current price of the CryptoCurrency you're typing on Reddit",
   "author": "Miguel Stevens",
   "version": "0.3.0",
   "options_page": "options.html",
