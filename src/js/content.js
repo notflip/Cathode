@@ -1,6 +1,10 @@
 import insertTextAtCursor from 'insert-text-at-cursor';
 import coins from './coins';
 
+const exceptions = {
+  "IOTA": "IOT"
+};
+
 let listening = false;
 let isLoading = false;
 let string = '';
@@ -46,7 +50,7 @@ document.addEventListener("keydown", function onEvent(event) {
 
             isLoading = true;
 
-            let coin = string.toUpperCase();
+            let coin = handleCoinNames(string.toUpperCase());
             const url = 'https://min-api.cryptocompare.com/data/pricemulti?fsyms=' + coin + '&tsyms=USD';
 
             // Give the browser the time to add the last typed letter
@@ -66,15 +70,22 @@ document.addEventListener("keydown", function onEvent(event) {
                             if (beforeValue === currentValue.trim()) {
                                 insertText(' 💬' + data[coin]['USD'] + '$');
                             }
-                            reset();
                         }
+
+                        reset();
                         return true;
-                    })
-                    .error(() => {reset()});
+                    });
             }, 10);
         }
     }
 });
+
+function handleCoinNames(coin) {
+    if(exceptions.hasOwnProperty(coin)) {
+        return exceptions[coin];
+    }
+    return coin;
+}
 
 function insertText(resp) {
     const el = document.activeElement;
