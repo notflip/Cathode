@@ -71,7 +71,7 @@ document.addEventListener("keydown", function onEvent(event) {
                             const currentValue = document.querySelectorAll('.public-DraftEditor-content')[0].innerHTML;
                             // Compare the values and don't paste if there's a difference (eg user submitted);
                             if (beforeValue === currentValue.trim()) {
-                                insertText(' 💬' + data[coin]['USD'] + '$');
+                                insertText(' 💰' + data[coin]['USD'] + '$');
                             }
                         }
 

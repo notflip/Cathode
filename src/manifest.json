@@ -1,9 +1,9 @@
 {
   "name": "Cathode",
   "short_name": "Cathode",
-  "description": "Cathode fetches the current price of the CryptoCurrency you're typing on Reddit",
+  "description": "💰 Cathode fetches the current price of the CryptoCurrency you're typing on Reddit",
   "author": "Miguel Stevens",
-  "version": "0.3.0",
+  "version": "0.3.2",
   "options_page": "options.html",
   "background": {
     "scripts": ["background.bundle.js"]
